@@ -14,7 +14,7 @@ import config from "@/tamagui.config";
 import { useColorScheme } from "react-native";
 
 import {QueryClientProvider, QueryClient, } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -66,17 +66,19 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <TamaguiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          </Stack>
-        </ThemeProvider>
-        {/* <ReactQueryDevtools  /> */}
-      </QueryClientProvider>
-    </TamaguiProvider>
+    <SafeAreaProvider>
+      <TamaguiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider
+            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+          >
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
+          </ThemeProvider>
+          {/* <ReactQueryDevtools  /> */}
+        </QueryClientProvider>
+      </TamaguiProvider>
+    </SafeAreaProvider>
   );
 }

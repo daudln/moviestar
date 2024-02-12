@@ -5,8 +5,10 @@ export interface APIResponse<T> {
 }
 
 const axiosInstance = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
-  params: {},
+  baseURL: process.env.EXPO_PUBLIC_API_URL,
+  params: {
+    api_key: process.env.EXPO_PUBLIC_API_KEY,
+  },
 });
 
 class APIClient<T> {

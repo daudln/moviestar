@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { User } from "@/types/user";
-import APIClient from "../services/api-client";
+import APIClient from "../services/api.service";
 
 const apiClient = new APIClient<User>("/users");
 const useUsers = () =>
