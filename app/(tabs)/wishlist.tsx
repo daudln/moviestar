@@ -10,7 +10,7 @@ const Wishlist = () => {
     <>
       {isLoading && <LoadingIndicator />}
       {error && <Text>{error.message}</Text>}
-      {users.results && (
+      {users?.results && (
         <YGroup alignSelf="center" bordered width={240} size="$4">
           {users.results.map((user) => (
             <YGroup.Item key={user.id}>
