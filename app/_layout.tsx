@@ -13,6 +13,9 @@ import { TamaguiProvider } from "tamagui";
 import config from "@/tamagui.config";
 import { useColorScheme } from "react-native";
 
+import {QueryClientProvider, QueryClient, } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -28,7 +31,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
+    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
     ...FontAwesome.font,
   });
 
@@ -50,16 +54,29 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      networkMode: "offlineFirst",
+    },
+  },
+});
+
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
     <TamaguiProvider config={config}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </ThemeProvider>
+        {/* <ReactQueryDevtools  /> */}
+      </QueryClientProvider>
     </TamaguiProvider>
   );
 }
