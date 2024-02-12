@@ -1,7 +1,7 @@
-import {createStore} from "zustand";
+import {create} from "zustand";
 import {} from "zustand/middleware";
 
-const useUserStore = createStore<User>()(() => ({
+const useUserStore = create<User>()(() => ({
     user: null,
 }));
 
