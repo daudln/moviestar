@@ -5,7 +5,6 @@ import { Heading, YStack, Button, Input, Label, TextArea } from 'tamagui'
 
 const Profile = () => {
   const [name, setName] = useState("")
-  const user = useUserStore((state) => state)
   return (
     <YStack
       flex={1}

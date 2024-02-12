@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import {View, Text} from "tamagui"
 
 import { Text, View, Button } from 'tamagui';
 
