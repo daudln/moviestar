@@ -9,12 +9,12 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
-import { TamaguiProvider } from "tamagui";
 import config from "@/tamagui.config";
 import { useColorScheme } from "react-native";
+import { TamaguiProvider } from "tamagui";
 
-import {QueryClientProvider, QueryClient, } from "@tanstack/react-query";
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -76,7 +76,6 @@ function RootLayoutNav() {
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             </Stack>
           </ThemeProvider>
-          {/* <ReactQueryDevtools  /> */}
         </QueryClientProvider>
       </TamaguiProvider>
     </SafeAreaProvider>
